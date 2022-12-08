@@ -18,6 +18,7 @@
              script{ env.buildname = input  message: 'Please input build name', parameters: [string(defaultValue:'', description: 'Enter a valid build name?', name: 'build name')], ok : 'Build Now',id :'choice_id'
              }
                 buildName env.buildname
+                sh 'echo $GIT_BRANCH'
                   sh 'dotnet build'
                 sh ' ls -lrt && pwd'
                 archiveArtifacts artifacts: 'bin/Debug/net6.0/*.dll'
